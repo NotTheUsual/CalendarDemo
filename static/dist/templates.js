@@ -1,0 +1,2 @@
+angular.module('calendar.templates').run(['$templateCache', function($templateCache) {$templateCache.put('static/app/month/month.directive.html','<p>Today is {{now.getDate()}}</p>');
+$templateCache.put('static/app/root/root.controller.html','<month></month>');}]);

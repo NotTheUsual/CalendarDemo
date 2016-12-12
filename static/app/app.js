@@ -1,15 +1,11 @@
 (function() {
   'use strict';
-  angular
-    .module('calendar', [
-      'ui.router'
-    ])
-    .config(function($stateProvider, $urlRouterProvider) {
-      $stateProvider.state('month', {
-        url: '/',
-        template: '<p>December</p>'
-      });
 
-      $urlRouterProvider.otherwise('/');
-    });
+  angular.module('calendar.templates', []);
+  angular.module('calendar.directives', ['calendar.templates']);
+  angular.module('calendar.controllers', [
+    'calendar.directives',
+    'calendar.templates'
+  ]);
+
 })();
