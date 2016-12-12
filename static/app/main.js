@@ -6,6 +6,7 @@
       'ui.router',
       'calendar.templates',
       'calendar.controllers',
+      'calendar.services',
       'calendar.directives'
     ])
 
@@ -13,7 +14,7 @@
     .config(function($stateProvider, $urlRouterProvider) {
       $stateProvider.state('month', {
         url: '/',
-        templateUrl: 'static/app/root/root.controller.html',
+        templateUrl: 'app/root/root.controller.html',
         controller: 'RootController'
       });
 

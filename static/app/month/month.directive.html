@@ -1,1 +1,6 @@
-<p>Today is {{now.getDate()}}</p>
+<p>{{month.name}}</p>
+<ul class="month-days offset-{{month.startDay}}">
+  <li class="month-day" ng-repeat="i in range(month.days)">
+    {{i}} - {{dayName(month, i)}}
+  </li>
+</ul>

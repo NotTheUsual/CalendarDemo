@@ -1,2 +1,2 @@
-angular.module('calendar.templates').run(['$templateCache', function($templateCache) {$templateCache.put('static/app/month/month.directive.html','<p>Today is {{now.getDate()}}</p>');
+angular.module('calendar.templates').run(['$templateCache', function($templateCache) {$templateCache.put('static/app/month/month.directive.html','<p>{{month.name}}</p>\n<ul class="month-days offset-{{month.startDay}}">\n  <li class="month-day" ng-repeat="i in range(month.days)">\n    {{i}} - {{dayName(month, i)}}\n  </li>\n</ul>');
 $templateCache.put('static/app/root/root.controller.html','<month></month>');}]);
