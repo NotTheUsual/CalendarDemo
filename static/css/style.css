@@ -24,5 +24,8 @@ html {
   padding: 0.2rem;
   width: 120px;
 }
+.month-day.past {
+  opacity: 0.5;
+}
 
 /*# sourceMappingURL=../maps/style.css.map */

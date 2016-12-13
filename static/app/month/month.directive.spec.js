@@ -37,6 +37,13 @@ describe('month', function() {
     expect($scope.focussedDay).toEqual({id: 5});
   });
 
+  it('will not show detail for a day in the past', function() {
+    generateElement();
+    expect($scope.focussedDay).toEqual(null);
+    $scope.showDay({id: 5, isInPast: true});
+    expect($scope.focussedDay).toEqual(null);
+  });
+
   it('can hide detail for a day', function() {
     generateElement();
     $scope.focussedDay = {id: 5}

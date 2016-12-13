@@ -2,6 +2,7 @@
 <ul class="month-days offset-{{month.startDay}}">
   <li class="month-day"
       ng-repeat="day in month.days"
+      ng-class="{'past': day.isInPast}"
       ng-click="showDay(day)">
     {{day.date}} - {{day.weekday}}
   </li>

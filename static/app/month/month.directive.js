@@ -28,6 +28,7 @@
     }
 
     function showDay(day) {
+      if (day.isInPast) return;
       $scope.focussedDay = day;
     }
 
