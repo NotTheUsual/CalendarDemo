@@ -32,9 +32,12 @@
     }
 
     function save(date) {
-      if (!date.appointment) return;
       var key = appointmentKeyFor(date);
-      localStorage.setItem(key, date.appointment);
+      if (!!date.appointment) {
+        localStorage.setItem(key, date.appointment);
+      } else {
+        localStorage.removeItem(key);
+      }
     }
   }
 

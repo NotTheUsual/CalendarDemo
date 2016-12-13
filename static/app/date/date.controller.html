@@ -5,6 +5,7 @@
   </h2>
   <p class="day-appointment" ng-if="!newAppointment">{{day.appointment || 'Nothing scheduled'}}</p>
   <button class="day-button" ng-if="!newAppointment" ng-click="edit()">Edit</button>
+  <button class="day-button" ng-if="!!day.appointment && !newAppointment" ng-click="delete()">Delete</button>
   <form ng-show="!!newAppointment">
     <input type="text" placeholder="New Appointment" class="day-input" ng-model="newAppointment.text" />
     <button class="day-button" ng-click="cancelEdit()">Cancel</button>

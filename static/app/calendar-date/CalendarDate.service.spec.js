@@ -56,6 +56,13 @@ describe('CalendarDate', function() {
     expect(localStorage['2016/5/2']).toBeUndefined();
   });
 
+  it('can clear an appointment from a date', function() {
+    var date = {year: 2016, month: 5, date: 2, appointment: null};
+    localStorage.setItem('2016/5/2', 'Outdated');
+    CalendarDate.save(date);
+    expect(localStorage['2016/5/2']).toBeUndefined();
+  });
+
   it('can restore a previously set appointment on load', function() {
     localStorage.setItem('2016/5/2', 'Physio');
     var month = new Date(2016, 5, 1);

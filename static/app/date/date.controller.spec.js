@@ -14,6 +14,8 @@ describe('DateController', function() {
     $timeout = _$timeout_;
 
     CalendarDate = _CalendarDate_;
+
+    localStorage.clear();
   }));
   
   function setupController() {
@@ -64,8 +66,19 @@ describe('DateController', function() {
     $scope.saveAppointment('Thing');
 
     expect($scope.day.appointment).toEqual('Thing');
-    expect(localStorage['2017/5/2']).toEqual('Thing')
+    expect(localStorage['2017/5/2']).toEqual('Thing');
     expect($scope.newAppointment).toBeNull();
+  });
+
+  it('can delete an appointment', function() {
+    localStorage.setItem('2017/5/2', 'Old');
+    setupController();
+    expect($scope.day.appointment).toEqual('Old');
+
+    $scope.delete();
+
+    expect($scope.day.appointment).toBeNull();
+    expect(localStorage['2017/5/2']).toBeUndefined();
   });
 
   it('can close the date view', function() {

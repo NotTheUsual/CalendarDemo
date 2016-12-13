@@ -9,10 +9,11 @@
     $scope.day = fetchDay();
     $scope.newAppointment = null;
 
-    $scope.edit  = edit;
-    $scope.cancelEdit = stopEditing;
+    $scope.edit            = edit;
+    $scope.delete          = deleteAppointment;
+    $scope.cancelEdit      = stopEditing;
     $scope.saveAppointment = saveAppointment;
-    $scope.close = close;
+    $scope.close           = close;
 
     //////////////
 
@@ -25,6 +26,11 @@
 
     function edit() {
       $scope.newAppointment = {text: angular.copy($scope.day.appointment)};
+    }
+
+    function deleteAppointment() {
+      $scope.day.appointment = null;
+      CalendarDate.save($scope.day);
     }
 
     function stopEditing() {
