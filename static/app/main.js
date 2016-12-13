@@ -12,11 +12,17 @@
 
     /* @ngInject */
     .config(function($stateProvider, $urlRouterProvider) {
-      $stateProvider.state('month', {
-        url: '/',
-        templateUrl: 'app/root/root.controller.html',
-        controller: 'RootController'
-      });
+      $stateProvider
+        .state('month', {
+          url: '/',
+          templateUrl: 'app/root/root.controller.html',
+          controller: 'RootController'
+        })
+        .state('date', {
+          url: '/date/:year/:month/:date',
+          templateUrl: 'app/date/date.controller.html',
+          controller: 'DateController'
+        });
 
       $urlRouterProvider.otherwise('/');
     });

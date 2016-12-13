@@ -12,13 +12,10 @@
   }
 
   /* @ngInject */
-  function MonthController($scope, months) {
+  function MonthController($scope, $state, months) {
     $scope.month = currentMonthInfo();
-    $scope.focussedDay = null;
 
     $scope.showDay = showDay;
-    $scope.hideDay = hideDay;
-    $scope.saveDay = saveDay;
 
     /////////////////////
 
@@ -29,16 +26,7 @@
 
     function showDay(day) {
       if (day.isInPast) return;
-      $scope.focussedDay = day;
-    }
-
-    function hideDay() {
-      $scope.focussedDay = null;
-    }
-
-    function saveDay(day) {
-      console.log('saving', day.appointment);
-      hideDay();
+      $state.go('date', {year: day.year, month: day.month, date: day.date});
     }
   }
 })();
