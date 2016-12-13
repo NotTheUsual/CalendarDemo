@@ -1,11 +1,15 @@
 <section class="day">
-  <h2>{{day.weekday}}, {{day.monthName}} {{day.date}}</h2>
-  <p ng-if="!newAppointment">{{day.appointment || 'Nothing scheduled'}}</p>
-  <button ng-if="!newAppointment" ng-click="edit()">Edit</button>
+  <h3 class="day-monthname">{{day.monthName}}</h3>
+  <h2 class="day-title">
+    <span class="day-weekday">{{day.weekday}}</span> <span class="day-date">{{day.date}}</span>
+  </h2>
+  <p class="day-appointment" ng-if="!newAppointment">{{day.appointment || 'Nothing scheduled'}}</p>
+  <button class="day-button" ng-if="!newAppointment" ng-click="edit()">Edit</button>
   <form ng-show="!!newAppointment">
-    <input type="text" placeholder="New Appointment" ng-model="newAppointment.text" />
-    <button ng-click="cancelEdit()">Cancel</button>
-    <button ng-click="saveAppointment(newAppointment.text)">Save</button>
+    <input type="text" placeholder="New Appointment" class="day-input" ng-model="newAppointment.text" />
+    <button class="day-button" ng-click="cancelEdit()">Cancel</button>
+    <button class="day-button" ng-click="saveAppointment(newAppointment.text)">Save</button>
   </form>
-  <button ng-click="close()">Back</button>
 </section>
+
+<button class="back-button" ng-click="close()">Back</button>

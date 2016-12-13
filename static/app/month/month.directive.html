@@ -1,9 +1,19 @@
-<p>{{month.name}}</p>
+<h2 class="month-name">{{month.name}}</h2>
+<ul class="month-days">
+  <li class="month-day-header">Monday</li>
+  <li class="month-day-header">Tuesday</li>
+  <li class="month-day-header">Wednesday</li>
+  <li class="month-day-header">Thursday</li>
+  <li class="month-day-header">Friday</li>
+  <li class="month-day-header">Saturday</li>
+  <li class="month-day-header">Sunday</li>
+</ul>
 <ul class="month-days offset-{{month.startDay}}">
   <li class="month-day"
       ng-repeat="day in month.days"
       ng-class="{'past': day.isInPast}"
       ng-click="showDay(day)">
-    {{day.date}} - {{day.weekday}}
+    <span class="month-day-weekday">{{day.weekday}}</span> <span class="month-day-date">{{day.date}}</span>
+    <p class="month-day-appointment" ng-if="!!day.appointment">{{day.appointment}}</p>
   </li>
 </ul>
