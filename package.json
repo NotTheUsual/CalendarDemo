@@ -32,6 +32,7 @@
     "sinon": "^1.17.6"
   },
   "scripts": {
+    "show-coverage": "open ./coverage/html/index.html",
     "test": "karma start test/karma.conf.js"
   }
 }
