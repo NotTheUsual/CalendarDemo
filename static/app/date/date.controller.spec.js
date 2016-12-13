@@ -56,7 +56,7 @@ describe('DateController', function() {
     expect($scope.newAppointment).toBeNull();
   });
 
-  it('can save the appointment (temporarily, anyway)', function() {
+  it('can save the appointment', function() {
     setupController();
     expect($scope.day.appointment).toBeNull();
     $scope.newAppointment = {text: 'Thing'};
@@ -64,6 +64,7 @@ describe('DateController', function() {
     $scope.saveAppointment('Thing');
 
     expect($scope.day.appointment).toEqual('Thing');
+    expect(localStorage['2017/5/2']).toEqual('Thing')
     expect($scope.newAppointment).toBeNull();
   });
 
@@ -74,6 +75,10 @@ describe('DateController', function() {
     $scope.close();
 
     expect($state.go).toHaveBeenCalledWith('month');
+  });
+
+  afterEach(function() {
+    window.localStorage.clear();
   });
 });
 

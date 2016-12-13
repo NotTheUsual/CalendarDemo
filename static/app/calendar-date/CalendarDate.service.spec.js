@@ -5,6 +5,8 @@ describe('CalendarDate', function() {
 
   beforeEach(inject(function(_CalendarDate_) {
     CalendarDate = _CalendarDate_;
+
+    window.localStorage.clear();
   }));
 
   it('can create a CalendarDate from a month and date', function() {
@@ -40,5 +42,29 @@ describe('CalendarDate', function() {
     var date = today.getDate();
     var calDate = CalendarDate.from(today, date);
     expect(calDate.isInPast).toEqual(false);
+  });
+
+  it('can save an appointment for a date', function() {
+    var date = {year: 2016, month: 5, date: 2, appointment: 'Health'};
+    CalendarDate.save(date);
+    expect(localStorage['2016/5/2']).toEqual('Health');
+  });
+
+  it('can save a date with no appointment', function() {
+    var date = {year: 2016, month: 5, date: 2, appointment: null};
+    CalendarDate.save(date);
+    expect(localStorage['2016/5/2']).toBeUndefined();
+  });
+
+  it('can restore a previously set appointment on load', function() {
+    localStorage.setItem('2016/5/2', 'Physio');
+    var month = new Date(2016, 5, 1);
+    var date = 2;
+    var calDate = CalendarDate.from(month, date);
+    expect(calDate.appointment).toEqual('Physio');
+  });
+
+  afterEach(function() {
+    window.localStorage.clear();
   });
 });

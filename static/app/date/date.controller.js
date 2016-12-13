@@ -33,6 +33,7 @@
 
     function saveAppointment(text) {
       $scope.day.appointment = text;
+      CalendarDate.save($scope.day);
       stopEditing();
     }
 
