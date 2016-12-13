@@ -1,8 +1,6 @@
 (function() {
   'use strict';
 
-  console.log('loaded');
-
   angular.module('calendar.directives')
     .directive('month', Month);
 
@@ -16,9 +14,11 @@
   /* @ngInject */
   function MonthController($scope, months) {
     $scope.month = currentMonthInfo();
+    $scope.focussedDay = null;
 
-    $scope.range = range;
-    $scope.dayName = dayName;
+    $scope.showDay = showDay;
+    $scope.hideDay = hideDay;
+    $scope.saveDay = saveDay;
 
     /////////////////////
 
@@ -27,18 +27,17 @@
       return months.infoAbout(now);
     }
 
-    function range(max) {
-      var output = [];
-      for (var i = 1; i <= max; i += 1) {
-        output.push(i)
-      }
-      return output;
+    function showDay(day) {
+      $scope.focussedDay = day;
     }
 
-    function dayName(month, index) {
-      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      var key = (index + month.startDay - 1) % 7;
-      return days[key];
+    function hideDay() {
+      $scope.focussedDay = null;
+    }
+
+    function saveDay(day) {
+      console.log('saving', day.appointment);
+      hideDay();
     }
   }
 })();

@@ -23,19 +23,24 @@ describe('month', function() {
   }
 
   it('can set up the scope with information about the current month', function() {
+    spyOn(months, 'infoAbout').and.returnValue({name: 'December', days: []});
     generateElement();
-    expect($scope.month).toEqual(months.infoAbout(new Date()));
+
+    var monthInfo = months.infoAbout(new Date());
+    expect($scope.month).toEqual(monthInfo);
   });
 
-  it('can return a range for iterating over from a number', function() {
+  it('can show detail for a day', function() {
     generateElement();
-    expect($scope.range(2)).toEqual([1,2]);
-    expect($scope.range(4)).toEqual([1, 2, 3, 4]);
+    expect($scope.focussedDay).toEqual(null);
+    $scope.showDay({id: 5});
+    expect($scope.focussedDay).toEqual({id: 5});
   });
 
-  it('can get the day name for a given month date', function() {
+  it('can hide detail for a day', function() {
     generateElement();
-    var june = months.infoAbout(new Date(2016, 5));
-    expect($scope.dayName(june, 5)).toEqual('Sunday')
+    $scope.focussedDay = {id: 5}
+    $scope.hideDay();
+    expect($scope.focussedDay).toEqual(null);
   });
 });

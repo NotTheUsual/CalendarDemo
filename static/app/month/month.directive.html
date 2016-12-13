@@ -1,6 +1,15 @@
 <p>{{month.name}}</p>
 <ul class="month-days offset-{{month.startDay}}">
-  <li class="month-day" ng-repeat="i in range(month.days)">
-    {{i}} - {{dayName(month, i)}}
+  <li class="month-day"
+      ng-repeat="day in month.days"
+      ng-click="showDay(day)">
+    {{day.date}} - {{day.weekday}}
   </li>
 </ul>
+
+<section class="day" ng-show="!!focussedDay">
+  <h2>{{focussedDay.date}}</h2>
+  <input type="text" placeholder="Appointment" ng-model="focussedDay.appointment" />
+  <button ng-click="hideDay()">Close</button>
+  <button ng-click="saveDay(focussedDay)">Save</button>
+</section>
