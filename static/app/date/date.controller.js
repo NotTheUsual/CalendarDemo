@@ -7,7 +7,11 @@
   /* @ngInject */
   function DateController($scope, $state, $stateParams, CalendarDate) {
     $scope.day = fetchDay();
+    $scope.newAppointment = null;
 
+    $scope.edit  = edit;
+    $scope.cancelEdit = stopEditing;
+    $scope.saveAppointment = saveAppointment;
     $scope.close = close;
 
     //////////////
@@ -17,6 +21,19 @@
           month = $stateParams.month,
           date = $stateParams.date;
       return CalendarDate.from(new Date(year, month, date), date);
+    }
+
+    function edit() {
+      $scope.newAppointment = {text: angular.copy($scope.day.appointment)};
+    }
+
+    function stopEditing() {
+      $scope.newAppointment = null; 
+    }
+
+    function saveAppointment(text) {
+      $scope.day.appointment = text;
+      stopEditing();
     }
 
     function close() {

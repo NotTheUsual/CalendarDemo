@@ -17,6 +17,9 @@ describe('DateController', function() {
   }));
   
   function setupController() {
+    $stateParams.year = $stateParams.year || 2017;
+    $stateParams.month = $stateParams.month || 5;
+    $stateParams.date = $stateParams.date || 2;
     ctrl = $controller('DateController', {$scope: $scope, $state: $state, $stateParams: $stateParams, CalendarDate: CalendarDate});
   }
 
@@ -29,6 +32,39 @@ describe('DateController', function() {
     expect($scope.day.month).toEqual(5);
     expect($scope.day.date).toEqual(2);
     expect($scope.day.monthName).toEqual('June');
+  });
+
+  it('can start editing the appointment', function() {
+    setupController();
+    $scope.day.appointment = null;
+    expect($scope.newAppointment).toBeNull();
+    $scope.edit();
+    expect($scope.newAppointment).toEqual({text: null});
+  });
+
+  it('can start editing the appointment (with existing text)', function() {
+    setupController();
+    $scope.day.appointment = 'Doctor';
+    $scope.edit();
+    expect($scope.newAppointment).toEqual({text: 'Doctor'});
+  });
+
+  it('can cancel editing the appointment', function() {
+    setupController();
+    $scope.newAppointment = {text: 'mistake'};
+    $scope.cancelEdit();
+    expect($scope.newAppointment).toBeNull();
+  });
+
+  it('can save the appointment (temporarily, anyway)', function() {
+    setupController();
+    expect($scope.day.appointment).toBeNull();
+    $scope.newAppointment = {text: 'Thing'};
+
+    $scope.saveAppointment('Thing');
+
+    expect($scope.day.appointment).toEqual('Thing');
+    expect($scope.newAppointment).toBeNull();
   });
 
   it('can close the date view', function() {
